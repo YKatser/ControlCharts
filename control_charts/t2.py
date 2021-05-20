@@ -67,7 +67,7 @@ class T2:
     --------
     T2+Q based on PCA:
 
-    from statistics import T2
+    from t2 import T2
     import pandas as pd
     import numpy as np
     df = pd.DataFrame(np.random.randn(100, 4), columns=list('ABCD'))
@@ -77,6 +77,9 @@ class T2:
 
     T2 without PCA:
 
+    from t2 import T2
+    import pandas as pd
+    import numpy as np
     df = pd.DataFrame(np.random.randn(100, 4), columns=list('ABCD'))
     t2 = T2(using_pca=False)
     t2.fit(df.iloc[:20])
@@ -145,38 +148,38 @@ class T2:
     # PLOTTING AND SAVING RESULTS
     def plot_t2(self, t2=None, window_size=200):
         if t2 is None:
-            t2 = self.T2
+            t2 = self.t2
         plt.figure(figsize=(12, 6))
         plt.plot(t2, label='$T^2$-statistics')
         #for i in self.final_list:
         #    plt.axvspan(i[0], i[1], facecolor='green', alpha=0.2, zorder=0,
-        #                label='Обучающая выборка')
+        #                label='Train set')
         plt.grid(True)
         plt.axhline(self.t2_ucl, zorder=10, color='r', label='UCL')
         plt.ylim(0, 3 * max(min(t2), self.t2_ucl))
         plt.xlim(t2.index.values[0], t2.index.values[-1])
-        plt.title('$T^2$-statistics chart')
+        plt.title('$T^2$-statistic chart')
         plt.xlabel('Time')
-        plt.ylabel('$T^2$-statistics value')
-        plt.legend(['$T^2$-statistics','UCL','Обучающая выборка'])
+        plt.ylabel('$T^2$-statistic values')
+        plt.legend(['$T^2$-statistic','UCL','Train set'])
         plt.tight_layout()
         
     def plot_q(self, q=None, window_size=200):
         if q is None:
             q = self.q
         plt.figure(figsize=(12, 6))
-        plt.plot(q, label='$Q$-statistics')
+        plt.plot(q, label='$Q$-statistic')
         #for i in self.final_list:
         #    plt.axvspan(i[0], i[1], facecolor='green', alpha=0.2, zorder=0,
-        #                label='Обучающая выборка')
+        #                label='Train set')
         plt.grid(True)
         plt.axhline(self.q_ucl, zorder=10, color='r', label='UCL')
         plt.ylim(0, 3 * max(min(q), self.q_ucl))
         plt.xlim(q.index.values[0], q.index.values[-1])
-        plt.title('$Q$-statistics chart')
+        plt.title('$Q$-statistic chart')
         plt.xlabel('Time')
-        plt.ylabel('$Q$-statistics value')
-        plt.legend(['$Q$-statistics', 'UCL', 'Обучающая выборка'])
+        plt.ylabel('$Q$-statistic values')
+        plt.legend(['$Q$-statistic', 'UCL', 'Train set'])
         plt.tight_layout()
 
     @staticmethod
@@ -227,8 +230,7 @@ class T2:
             # calculating T2_ucl
             self._t2_ucl(x_)
             if self.using_pca:
-                print('''Number of principal components is equal to dataset \
-                shape. Q-statistics is unavailable.''')
+                print('''Number of principal components is equal to dataset shape. Q-statistic is unavailable.''')
         else:
             # preparing inv_cov for T2 (principal space)
             self.inv_cov = LA.inv(np.cov(x_pc.T))
@@ -248,7 +250,7 @@ class T2:
     
     def predict(self, x, plot_fig=True, save_fig=False, fig_name=['T2','Q'],
                 window_size=1):
-        """Computation of T2-statistics or T2-statistics+Q-statistics for
+        """Computation of T2-statistic or T2-statistic+Q-statistic for
         the testing dataset.
 
         Parameters
@@ -257,8 +259,8 @@ class T2:
             Testing dataset.
 
         plot_fig : boolean, True by default
-            If True there will be plotted T2-statistics or
-            T2-statistics+Q-statistics chart.
+            If True there will be plotted T2-statistic or
+            T2-statistic+Q-statistic chart.
 
         save_fig : boolean, False by default
             If True there will be saved T2 and Q charts as .png to the
