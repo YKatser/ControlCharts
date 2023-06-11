@@ -1,5 +1,7 @@
 # Examples
 
+Examples of using control charts for anomaly detection are available in the [examples](https://github.com/YKatser/ControlCharts/tree/main/examples) folder.
+
 1. Simple example of the anomaly detection on the synthetic data with outliers  
 [[notebook]](https://github.com/YKatser/control-charts/tree/main/examples/synthetic_example.ipynb)
 

@@ -6,7 +6,7 @@ Control charts solve univariate and multivariate quality-control (or process-mon
 This package is about the use of statistical methods and other problem-solving techniques to improve the quality of the products used by our society. These products consist of manufactured goods such as automobiles, computers, and clothing, as well as services such as the generation and distribution of electrical energy, public transportation, banking, retailing, and health care. Quality improvement methods can be applied to any area within a company or organization, including manufacturing, process development, engineering design, finance and accounting, marketing, distribution and logistics, customer service, and field service of products.
 
 The taxonomy of existing control charts:
-![taxonomy](docs/pictures/taxonomy.png)
+![taxonomy](../pictures/taxonomy.png)
 
 More useful information one can find in the book "Introduction to Statistical Quality Control" by Douglas C. Montgomery.
 
@@ -30,9 +30,6 @@ To avoid using two separated indicators (Hotelling's T-squared and Q statistics)
 4. (tba) Univariate and multivariate EWMA statistics
 
 5. (tba) Univariate and multivariate CUSUM statistics
-
-# Examples
-Examples of using control charts for anomaly detection are available in the [examples](examples/) folder.
 
 # License
 MIT
